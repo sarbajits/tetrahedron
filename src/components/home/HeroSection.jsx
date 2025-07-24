@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import hero from '../assets/img/campus4.jpg';
 
 const HeroSection = () => {
     const textVariants = {
@@ -34,7 +33,8 @@ const HeroSection = () => {
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
                 style={{
-                    backgroundImage: `url(${hero})`,
+                    // backgroundImage: `url(${hero})`,
+                    backgroundImage: `url('./img/campus4.jpg')`,
                 }}
             >
                 {/* Optional: Gradient overlay for text readability */}

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import HeroSection from '../components/HeroSection';
-import FeatureSection from '../components/FeatureSection';
-import TestimonialsSection from '../components/TestimonialsSection';
+import HeroSection from '../components/home/HeroSection';
+import FeatureSection from '../components/home/FeatureSection';
+import TestimonialsSection from '../components/home/TestimonialsSection';
 
 const Home = () => {
     return (
