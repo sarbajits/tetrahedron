@@ -7,5 +7,11 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+
   base: '/tetrahedron/',
+
+  server: {
+    host: true,      // ← This enables access via local network
+    port: 5173       // Optional: you can set any available port
+  }
 })
