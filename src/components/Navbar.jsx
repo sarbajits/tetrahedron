@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ThemeSwitcher from './ThemeSwitcher';
+import logo from '../assets/img/logo.png';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,7 @@ const Navbar = () => {
                             <Link to="/" className="flex items-center">
                                 <img
                                     className="h-10 w-auto"
-                                    src="./src\assets\img\logo.png"
+                                    src={logo}
                                     alt="Tetrahedron Group of Institutions"
                                 />
                                 <span className="ml-3 text-xl font-bold text-gray-900 dark:text-white">
