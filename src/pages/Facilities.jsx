@@ -3,32 +3,32 @@ const Facilities = () => {
         {
             title: "Laboratories",
             description: "Well equipped laboratories for Physics, Chemistry, Biology and IT are available for all students. Our labs are designed to provide hands-on experience and practical knowledge.",
-            image: "https://placehold.co/600x400/3b82f6/ffffff?text=Laboratory"
+            image: "./img/lab1.jpg"
         },
         {
             title: "Hostels",
             description: "Separate Hostels in separate campuses for Boys and Girls. Our hostels provide a safe, comfortable and conducive environment for study with 24/7 security and supervision.",
-            image: "https://placehold.co/600x400/3b82f6/ffffff?text=Hostel"
+            image: "./img/campus1.jpg"
         },
         {
             title: "Self Study Rooms",
             description: "Dedicated self study rooms (Air Conditioned) are available with faculties available for doubt clearance. These spaces are designed for focused individual study with proper lighting and seating.",
-            image: "https://placehold.co/600x400/3b82f6/ffffff?text=Study+Room"
+            image: "./img/classroom3.jpg"
         },
         {
-            title: "Transportation",
-            description: "Transportation available 24x7 within Campus and hostels. Our fleet of buses ensures safe and timely commute for all residential students.",
-            image: "https://placehold.co/600x400/3b82f6/ffffff?text=Transport"
+            title: "Digital Classrooms",
+            description: "Our college classrooms are designed to foster an engaging and collaborative learning environment. Equipped with essential technology and comfortable seating, they provide a conducive space for lectures, discussions, and group work, supporting a dynamic educational experience for all students.",
+            image: "./img/classroom6.jpg"
         },
         {
             title: "Canteen",
             description: "Each Campus has it's own Canteen with ample facilities to accommodate all students of the respective campus. We provide hygienic, nutritious and delicious meals to students.",
-            image: "https://placehold.co/600x400/3b82f6/ffffff?text=Canteen"
+            image: "./img/canteen2.jpg"
         },
         {
             title: "Security & Student Care",
             description: "100% security measures are adopted to ensure safety of all students. Our campus has CCTV surveillance, security personnel, and strict entry protocols. We also have a dedicated student care team for any emergencies.",
-            image: "https://placehold.co/600x400/3b82f6/ffffff?text=Security"
+            image: "./img/classroom10.jpg"
         }
     ];
 
