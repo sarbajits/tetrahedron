@@ -185,7 +185,7 @@ const Contact = () => {
                                 </button>
                             </div>
                         </form> */}
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe5urZXF1DkCuz3nDYdyIgOWIoK8yGqRoQAwDFJDuIoZt3oKw/viewform?embedded=true" width="100%" height="100%">Loading…</iframe>
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe5urZXF1DkCuz3nDYdyIgOWIoK8yGqRoQAwDFJDuIoZt3oKw/viewform?embedded=true" className="h-screen w-full md-h-full">Loading…</iframe>
                     </div>
                 </div>
             </div>
