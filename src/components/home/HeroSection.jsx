@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import TextType from '../gsap/TextType';
+import ScrollVelocity from '../gsap/ScrollVelocity';
 
 const HeroSection = () => {
     const textVariants = {
@@ -12,6 +14,10 @@ const HeroSection = () => {
                 duration: 0.6,
             },
         },
+    };
+
+    const handleAnimationComplete = () => {
+        // console.log('All letters have animated!');
     };
 
     const buttonGroupVariants = {
@@ -42,7 +48,7 @@ const HeroSection = () => {
             </div>
 
             {/* Hero Content */}
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
                 <div className="max-w-3xl text-center md:text-left">
                     <motion.h1
                         className="text-6xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl"
@@ -50,6 +56,14 @@ const HeroSection = () => {
                         animate="visible"
                         variants={textVariants}
                     >
+                        <TextType
+                            text={["Addmission Open", "Best College in Odisha", "Contact Us"]}
+                            typingSpeed={75}
+                            pauseDuration={1500}
+                            showCursor={true}
+                            cursorCharacter="😍"
+                            className='text-lg'
+                        />
                         <span className="block text-6xl">Tetrahedron Group</span>{' '}
                         <span className="block text-5xl text-amber-400 text-shadow-lg">
                             of Institutions
@@ -87,6 +101,12 @@ const HeroSection = () => {
                     </motion.div>
                 </div>
             </div>
+
+            <ScrollVelocity
+                texts={['Tetrahedron is the best', 'Delivering Education Excellence']}
+                velocity='100'
+                className="text-sm bg-linear-to-r from-cyan-200 to-blue-400 px-2"
+            />
         </div>
     );
 };
