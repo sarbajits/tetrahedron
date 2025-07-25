@@ -1,27 +1,27 @@
 const Contact = () => {
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const formData = new FormData(e.target);
+    //     const data = Object.fromEntries(formData.entries());
 
-        try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbytrMz66ieEA-B_cnOrjkcw-GIPT02WnBasQ9s60mXP4VkoGcRQ13ORsU3a3HGYqtqU/exec', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+    //     try {
+    //         const response = await fetch('https://script.google.com/macros/s/AKfycbytrMz66ieEA-B_cnOrjkcw-GIPT02WnBasQ9s60mXP4VkoGcRQ13ORsU3a3HGYqtqU/exec', {
+    //             method: 'POST',
+    //             body: JSON.stringify(data),
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //         });
 
-            const result = await response.json();
-            console.log("Saved:", result);
-            alert("Thank you! Your message was saved.");
-            e.target.reset();
-        } catch (error) {
-            console.error("Error saving to sheet:", error);
-            alert("Something went wrong. Try again later.");
-        }
-    };
+    //         const result = await response.json();
+    //         console.log("Saved:", result);
+    //         alert("Thank you! Your message was saved.");
+    //         e.target.reset();
+    //     } catch (error) {
+    //         console.error("Error saving to sheet:", error);
+    //         alert("Something went wrong. Try again later.");
+    //     }
+    // };
 
 
     return (
@@ -107,7 +107,7 @@ const Contact = () => {
                     {/* Contact Form */}
                     <div>
                         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send Us a Message</h3>
-                        <form className="space-y-6" onSubmit={handleSubmit}>
+                        {/* <form className="space-y-6" onSubmit={handleSubmit}>
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Full Name
@@ -150,7 +150,6 @@ const Contact = () => {
                                 />
                             </div>
 
-                            {/* Subject Field */}
                             <div>
                                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Subject
@@ -164,7 +163,6 @@ const Contact = () => {
                                 />
                             </div>
 
-                            {/* Message Field */}
                             <div>
                                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Message
@@ -178,7 +176,6 @@ const Contact = () => {
                                 ></textarea>
                             </div>
 
-                            {/* Submit Button */}
                             <div>
                                 <button
                                     type="submit"
@@ -187,7 +184,8 @@ const Contact = () => {
                                     Send Message
                                 </button>
                             </div>
-                        </form>
+                        </form> */}
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe5urZXF1DkCuz3nDYdyIgOWIoK8yGqRoQAwDFJDuIoZt3oKw/viewform?embedded=true" width="100%" height="100%">Loading…</iframe>
                     </div>
                 </div>
             </div>

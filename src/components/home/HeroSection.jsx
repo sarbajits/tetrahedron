@@ -43,7 +43,7 @@ const HeroSection = () => {
 
             {/* Hero Content */}
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-                <div className="max-w-3xl text-center lg:text-left">
+                <div className="max-w-3xl text-center md:text-left">
                     <motion.h1
                         className="text-6xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl"
                         initial="hidden"
@@ -67,7 +67,7 @@ const HeroSection = () => {
                         integrity.
                     </motion.p>
                     <motion.div
-                        className="mt-10 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4"
+                        className="mt-10 flex flex-col sm:flex-row sm:justify-center md:justify-start gap-4"
                         initial="hidden"
                         animate="visible"
                         variants={buttonGroupVariants}
