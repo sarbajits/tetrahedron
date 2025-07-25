@@ -1,15 +1,28 @@
 const Contact = () => {
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // In a real application, you would send this data to a backend server.
-        // For now, we'll just log it to the console.
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
-        console.log("Form submitted:", data);
-        // You might want to add a success message or clear the form here
-        alert("Thank you for your message! We will get back to you soon.");
-        e.target.reset(); // Clear the form after submission
+
+        try {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbytrMz66ieEA-B_cnOrjkcw-GIPT02WnBasQ9s60mXP4VkoGcRQ13ORsU3a3HGYqtqU/exec', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const result = await response.json();
+            console.log("Saved:", result);
+            alert("Thank you! Your message was saved.");
+            e.target.reset();
+        } catch (error) {
+            console.error("Error saving to sheet:", error);
+            alert("Something went wrong. Try again later.");
+        }
     };
+
 
     return (
         <div className="pt-16 bg-white dark:bg-gray-900 font-sans"> {/* Added font-sans for consistent typography */}
@@ -41,7 +54,7 @@ const Contact = () => {
                                     <p className="mt-1 text-gray-600 dark:text-gray-300">H234+H88 Tangi, Odisha</p>
                                     <div className="mt-4">
                                         <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.222389758843!2d85.5945573154309!3d20.29489418640445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1909d2d5171aa5%3A0xfc580e2b68b33fa8!2sTangi%2C%20Odisha!5e0!3m2!1sen!2sin!4v1625060000000!5m2!1sen!2sin"
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.6893689315225!2d85.99573007378208!3d20.55988680372037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a196c0e3c53f1c9%3A0x297acb1a709adc68!2sTetrahedron%20College!5e0!3m2!1sen!2sin!4v1753408339096!5m2!1sen!2sin"
                                             width="100%"
                                             height="200"
                                             style={{ border: 0 }}
@@ -61,7 +74,7 @@ const Contact = () => {
                                 </div>
                                 <div className="ml-3">
                                     <h4 className="text-lg font-medium text-gray-900 dark:text-white">Phone</h4>
-                                    <p className="mt-1 text-gray-600 dark:text-gray-300">7008222977</p>
+                                    <a className="mt-1 text-gray-600 dark:text-gray-300" href="tel:+917008222977">7008222977</a>
                                 </div>
                             </div>
 
@@ -118,6 +131,20 @@ const Contact = () => {
                                     name="email"
                                     id="email"
                                     autoComplete="email"
+                                    // required // Added required attribute
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white rounded-md"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    Phone Number
+                                </label>
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    id="phone"
+                                    autoComplete="phone"
                                     required // Added required attribute
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white rounded-md"
                                 />

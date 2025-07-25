@@ -25,7 +25,7 @@ const About = () => {
 
     return (
         <div className="pt-16 bg-white dark:bg-gray-900">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-2">
 
                 {/* Section 1: Introduction/Overview */}
                 <motion.div
@@ -33,7 +33,7 @@ const About = () => {
                     whileInView="show"
                     viewport={{ once: true, amount: 0.2 }}
                     variants={containerVariants}
-                    className="text-center pb-12"
+                    className="text-center pb-2"
                 >
                     <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">
                         About <span className="text-indigo-600 dark:text-indigo-400">Tetrahedron Group of Institutions</span>
@@ -115,7 +115,7 @@ const About = () => {
                                 transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
                                 viewport={{ once: true }}
                                 className="w-48 h-48 rounded-full object-cover mx-auto lg:mx-0 shadow-lg border-4 border-indigo-500 dark:border-indigo-400"
-                                src="./img/chairmanOffice2.jpg"
+                                src="./img/chairman.jpg"
                                 alt="Tridev Sir - Chairman, Tetrahedron Group of Institutions"
                             />
                             <motion.div
@@ -125,7 +125,7 @@ const About = () => {
                                 viewport={{ once: true }}
                                 className="text-center lg:text-left mt-4"
                             >
-                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Tridev Sir</h3>
+                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Triideb Behera</h3>
                                 <p className="text-indigo-600 dark:text-indigo-400 text-lg">Chairman</p>
                                 <p className="text-gray-500 dark:text-gray-300 text-md">Tetrahedron Group of Institutions</p>
                             </motion.div>
@@ -171,7 +171,7 @@ const About = () => {
                                 <p className="italic text-gray-600 dark:text-gray-300">Let Tetrahedron be your child's launchpad to a brighter tomorrow. Together, let's prepare a generation that not only qualifies but leads.</p>
 
                                 <p className="text-right text-gray-800 dark:text-gray-100 font-medium">Warm regards,</p>
-                                <p className="text-right text-gray-800 dark:text-gray-100 font-medium">Tridev Sir</p>
+                                <p className="text-right text-gray-800 dark:text-gray-100 font-medium">Triideb Behera</p>
                                 <p className="text-right text-gray-500 dark:text-gray-300">Chairman<br />Tetrahedron Group of Institutions</p>
                             </motion.div>
                         </div>
