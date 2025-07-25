@@ -48,7 +48,9 @@ const TestimonialsSection = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: index * 0.2 }}
                             viewport={{ once: true }}
-                            className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-lg transition duration-300"
+                            className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow
+               transition-all duration-300 ease-in-out
+               hover:shadow-xl hover:-translate-y-1 hover:border-indigo-500 hover:border-b-2"
                         >
                             <div className="flex items-center">
                                 <div className="flex-shrink-0">

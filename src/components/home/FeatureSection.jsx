@@ -82,7 +82,9 @@ const FeatureSection = () => {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: index * 0.1, duration: 0.5 }}
                                 viewport={{ once: true }}
-                                className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg hover-bg-grey-100"
+                                className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg
+               transition-all duration-300 ease-in-out
+               hover:bg-gray-100 dark:hover:bg-gray-700 hover:shadow-xl hover:-translate-y-1"
                             >
                                 <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
                                     <svg
