@@ -35,15 +35,25 @@ const HeroSection = () => {
 
     return (
         <div className="relative bg-white dark:bg-gray-900">
-            {/* Background Image */}
+
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
                 style={{
-                    // backgroundImage: `url(${hero})`,
                     backgroundImage: `url('./img/campus4.jpg')`,
                 }}
             >
-                {/* Optional: Gradient overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent dark:from-gray-900 dark:via-gray-800/40 dark:to-transparent"></div>
+            </div>
+
+            {/* Background Video */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <video
+                    src="./vid/back.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    className="w-full h-full object-cover"
+                ></video>
                 <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent dark:from-gray-900 dark:via-gray-800/40 dark:to-transparent"></div>
             </div>
 
@@ -101,12 +111,12 @@ const HeroSection = () => {
                     </motion.div>
                 </div>
             </div>
-
+            {/* 
             <ScrollVelocity
                 texts={['Tetrahedron is the best', 'Delivering Education Excellence']}
-                velocity='100'
-                className="text-sm bg-linear-to-r from-cyan-200 to-blue-400 px-2"
-            />
+                velocity='50'
+                className="text-sm text-white px-2"
+            /> */}
         </div>
     );
 };
