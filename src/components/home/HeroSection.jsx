@@ -67,7 +67,7 @@ const HeroSection = () => {
                         variants={textVariants}
                     >
                         <TextType
-                            text={["Addmission Open", "Best College in Odisha", "Contact Us"]}
+                            text={["Do you want to build your career", "Best College in Odisha", "Contact Us"]}
                             typingSpeed={75}
                             pauseDuration={1500}
                             showCursor={true}
