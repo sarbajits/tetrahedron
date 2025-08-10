@@ -2,21 +2,21 @@ import { motion } from 'framer-motion';
 
 const testimonials = [
     {
-        name: 'Suman Rout',
-        role: 'NEET Aspirant',
-        avatar: 'https://placehold.co/100/3b82f6/ffffff?text=SR',
+        name: 'Kamalakanta',
+        role: 'AIIMS BBSR (2024)',
+        avatar: './img/topper1.jpg',
         text: 'The integrated coaching for NEET at Tetrahedron has been exceptional. The faculty\'s dedication and the study environment have helped me improve my rank significantly.'
     },
     {
-        name: 'Priya Mohanty',
-        role: 'JEE Aspirant',
-        avatar: 'https://placehold.co/100/3b82f6/ffffff?text=PM',
+        name: 'Tapas Behera',
+        role: 'IIT KHARAGPUR (2022)',
+        avatar: './img/topper2.jpg',
         text: 'The self-study rooms with faculty support are a game-changer. I can focus better and get my doubts cleared immediately. The JEE coaching is top-notch.'
     },
     {
-        name: 'Amit Patra',
-        role: '+2 Science Student',
-        avatar: 'https://placehold.co/100/3b82f6/ffffff?text=AP',
+        name: 'Abinash Panda',
+        role: '+2 Science Topper (2025)',
+        avatar: './img/topper3.jpg',
         text: 'The residential facilities are excellent. The disciplined environment helps me stay focused on my studies while also participating in extracurricular activities.'
     }
 ];
