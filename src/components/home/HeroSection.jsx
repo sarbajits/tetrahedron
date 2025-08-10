@@ -48,7 +48,7 @@ const HeroSection = () => {
             {/* Background Video */}
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <video
-                    src="./vid/back.mp4"
+                    src="./vid/back2.mp4"
                     autoPlay
                     loop
                     muted
