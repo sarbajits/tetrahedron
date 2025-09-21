@@ -5,6 +5,15 @@ import TestimonialsSection from '../components/home/TestimonialsSection';
 import Whatsapp from '../components/home/Whatsapp';
 import { motion } from 'framer-motion';
 import CalltoAction from '../components/home/CalltoAction';
+import styled, { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+`;
 
 const Home = () => {
     return (
@@ -20,8 +29,8 @@ const Home = () => {
 
             {/* Call to Action */}
             <CalltoAction />
-
             <Whatsapp />
+
 
         </div>
     );

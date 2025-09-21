@@ -28,13 +28,13 @@ const Navbar = () => {
                         <div className="flex-shrink-0">
                             <Link to="/" className="flex items-center">
                                 <img
-                                    className="h-10 w-auto"
-                                    src="./img/logo.png"
+                                    className="h-12 w-auto"
+                                    src="./img/full_logo.png"
                                     alt="Tetrahedron Group of Institutions"
                                 />
-                                <span className="ml-3 text-xl font-bold text-gray-900 dark:text-white">
+                                {/* <span className="ml-3 text-xl font-bold text-gray-900 dark:text-white">
                                     Tetrahedron
-                                </span>
+                                </span> */}
                             </Link>
                         </div>
                     </div>
@@ -45,6 +45,12 @@ const Navbar = () => {
                                 className="px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800"
                             >
                                 Home
+                            </Link>
+                            <Link
+                                to="/chairmans-gallery"
+                                className="px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800"
+                            >
+                                Chairman's Gallery
                             </Link>
                             <Link
                                 to="/about"
@@ -114,6 +120,13 @@ const Navbar = () => {
                         onClick={() => setIsOpen(false)}
                     >
                         Home
+                    </Link>
+                    <Link
+                        to="/chairmans-gallery"
+                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        Chairman's Gallery
                     </Link>
                     <Link
                         to="/about"

@@ -53,42 +53,56 @@ const features = [
 
 const FeatureSection = () => {
     return (
-        <motion.div
+        <motion.section
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="py-12 bg-white dark:bg-gray-900"
+            className="py-20 bg-gradient-to-br from-indigo-50 via-white to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Heading */}
                 <div className="lg:text-center">
-                    <h2 className="text-base text-indigo-600 dark:text-indigo-400 font-semibold tracking-wide uppercase">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
+                        className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase"
+                    >
                         Why Choose Us
-                    </h2>
-                    <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="mt-3 text-4xl font-extrabold text-gray-900 dark:text-white sm:text-5xl bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent"
+                    >
                         Our Key Features
-                    </p>
-                    <p className="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 lg:mx-auto">
+                    </motion.p>
+                    <p className="mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-300 lg:mx-auto">
                         We provide an environment that fosters academic excellence and holistic development.
                     </p>
                 </div>
 
-                <div className="mt-10">
+                {/* Features */}
+                <div className="mt-14">
                     <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
                         {features.map((feature, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: index * 0.1, duration: 0.5 }}
+                                transition={{ delay: index * 0.15, duration: 0.6 }}
                                 viewport={{ once: true }}
-                                className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg
-               transition-all duration-300 ease-in-out
-               hover:bg-gray-100 dark:hover:bg-gray-700 hover:shadow-xl hover:-translate-y-1"
+                                className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-2xl 
+                  transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
                             >
-                                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                                {/* Icon */}
+                                <div className="flex items-center justify-center h-14 w-14 rounded-xl 
+                  bg-gradient-to-tr from-indigo-500 to-purple-600 text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
                                     <svg
-                                        className="h-6 w-6"
+                                        className="h-7 w-7"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -96,10 +110,14 @@ const FeatureSection = () => {
                                         {feature.icon}
                                     </svg>
                                 </div>
-                                <h3 className="mt-5 text-lg leading-6 font-medium text-gray-900 dark:text-white">
+
+                                {/* Title */}
+                                <h3 className="mt-6 text-xl font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
                                     {feature.title}
                                 </h3>
-                                <p className="mt-2 text-base text-gray-500 dark:text-gray-300">
+
+                                {/* Description */}
+                                <p className="mt-3 text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">
                                     {feature.description}
                                 </p>
                             </motion.div>
@@ -107,8 +125,9 @@ const FeatureSection = () => {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </motion.section>
     );
 };
+
 
 export default FeatureSection;

@@ -1,124 +1,296 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import TextType from '../gsap/TextType';
-import ScrollVelocity from '../gsap/ScrollVelocity';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const HeroSection = () => {
-    const textVariants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                ease: 'easeOut',
-                duration: 0.6,
-            },
+export default function App() {
+    const slides = [
+        {
+            id: 1,
+            type: "text-over-image",
+            image: "./img/campus5.jpg",
+            title: "Tetrahedron Group of Institutions",
+            subtitle: "Delivering Education Excellence since 2013. A leading residential science college nurturing academic excellence, scientific curiosity, and personal integrity.",
+            description: "Founded by Triideb Behera in 2013",
+            buttons: [{ text: "Know More", link: "./about", primary: true }, { text: "Contact Us", link: "./contact" }],
         },
+        {
+            id: 2,
+            type: "split-with-cards",
+            image: "./img/campus1.jpg",
+            title: "Vision & Mission",
+            description:
+                "To nurture academic excellence, scientific curiosity, and integrity — empowering responsible innovators and future leaders.",
+            buttons: [{ text: "Chairman's Gallery", link: "./chairmans-gallery", primary: true }],
+            cards: [
+                { title: "Established", text: "2013" },
+                { title: "Founder & Chairman", text: "Triideb Behera" },
+                { title: "Tagline", text: "Delivering Education Excellence" },
+            ],
+        },
+        {
+            id: 3,
+            type: "grid-cards",
+            image: "./img/classroom9.jpg",
+            title: "Academics That Build Futures",
+            description:
+                "We prepare students for board exams and competitive entrance tests (JEE/NEET) with integrated coaching.",
+            buttons: [{ text: "Academics", link: "./academics", primary: true }],
+            gridItems: [
+                { icon: "📘", title: "+2 Science", description: "PCB + IT, PCB + Geology" },
+                { icon: "📗", title: "PCMB", description: "Core Science Stream" },
+                { icon: "🧪", title: "Coaching", description: "NEET & JEE Integrated" },
+                { icon: "💻", title: "Departments", description: "Physics, Chemistry, Biology, IT, Geology" },
+            ],
+        },
+        {
+            id: 4,
+            type: "text-with-images",
+            image: "./img/campus4.jpg",
+            title: "Residential Learning Environment",
+            description:
+                "Tetrahedron provides a safe, structured residential setting fostering discipline, independence, and holistic development.",
+            buttons: [{ text: "Facilities", link: "./facilities", primary: true }],
+            sideImages: ["./img/classroom5.jpg", "./img/classroom11.jpg"],
+        },
+    ];
+
+    const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+    const contentVariants = {
+        initial: { opacity: 0, y: 50 },
+        animate: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+        exit: { opacity: 0, y: -50 },
     };
 
-    const handleAnimationComplete = () => {
-        // console.log('All letters have animated!');
+    const imageVariants = {
+        initial: { scale: 1.1, opacity: 0.8 },
+        animate: { scale: 1, opacity: 1, transition: { duration: 1.5 } },
     };
 
-    const buttonGroupVariants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                ease: 'easeOut',
-                duration: 0.6,
-                delay: 0.3,
-            },
-        },
+    const nextSlide = () => {
+        setCurrentSlideIndex((prev) => (prev + 1) % slides.length);
+    };
+    const prevSlide = () => {
+        setCurrentSlideIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    };
+
+    useEffect(() => {
+        const interval = setInterval(nextSlide, 6000);
+        return () => clearInterval(interval);
+    }, [currentSlideIndex]);
+
+    const SlideContent = ({ slide }) => {
+        switch (slide.type) {
+            case "text-over-image":
+                return (
+                    <motion.div
+                        className="max-w-3xl text-white dark:text-gray-100 p-6"
+                        variants={contentVariants}
+                    >
+                        <h2 className="text-sm font-bold opacity-80">
+                            {slide.description}
+                        </h2>
+                        <h1 className="mt-2 text-6xl md:text-6xl font-extrabold">
+                            {slide.title}
+                        </h1>
+                        <h3 className="mt-2 text-xl font-semibold opacity-90">
+                            {slide.subtitle}
+                        </h3>
+                        <div className="mt-8">
+                            <a
+                                href={slide.buttons[0].link}
+                                className="px-6 py-3 text-lg font-medium rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white"
+                            >
+                                {slide.buttons[0].text}
+                            </a>
+                            <a
+                                href={slide.buttons[1].link}
+                                className="ms-2 px-6 py-3 text-lg font-medium rounded-lg bg-white hover:bg-indigo-100 text-indigo-600"
+                            >
+                                {slide.buttons[1].text}
+                            </a>
+                        </div>
+
+                    </motion.div>
+                );
+            case "split-with-cards":
+                return (
+                    <div className="flex flex-col justify-center md:flex-row items-center gap-6 h-full">
+                        <motion.img
+                            src={slide.image}
+                            alt="Campus"
+                            className="hidden md:block w-full md:w-1/2 h-90 object-cover rounded-2xl shadow-lg"
+                            initial={{ x: -100, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                        />
+                        <motion.div
+                            className="w-full md:w-1/2 p-6 m-10 rounded-2xl bg-white/40 dark:bg-gray-900/80 backdrop-blur text-gray-900 dark:text-gray-100 shadow-xl flex flex-col justify-center"
+                            initial={{ x: 100, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                        >
+                            <h1 className="text-xl md:text-2xl font-extrabold">{slide.title}</h1>
+                            <p className="mt-2 text-lg leading-relaxed">{slide.description}</p>
+                            <div className="mt-2">
+                                <a
+                                    href={slide.buttons[0].link}
+                                    className="px-2 py-2 text-lg rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
+                                >
+                                    {slide.buttons[0].text}
+                                </a>
+                            </div>
+                            <div className="mt-6 space-y-3">
+                                {slide.cards.map((card, i) => (
+                                    <motion.div
+                                        key={i}
+                                        className="p-1 rounded-xl bg-gray-100 dark:bg-gray-800"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.3 + i * 0.2 }}
+                                    >
+                                        <h3 className="text-lg font-bold">{card.title}</h3>
+                                        <p className="text-sm opacity-80">{card.text}</p>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </div>
+                );
+            case "grid-cards":
+                return (
+                    <div className="flex flex-col lg:flex-row items-center gap-2 h-full">
+                        <motion.div
+                            className="w-full lg:w-1/2 p-6 text-white flex flex-col justify-center h-full"
+                            initial={{ x: -100, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                        >
+                            <h1 className="text-3xl md:text-5xl font-extrabold">{slide.title}</h1>
+                            <p className="mt-4 text-lg">{slide.description}</p>
+                            <div className="mt-6">
+                                <a
+                                    href={slide.buttons[0].link}
+                                    className="px-6 py-3 text-lg rounded-lg bg-green-600 hover:bg-green-700 text-white"
+                                >
+                                    {slide.buttons[0].text}
+                                </a>
+                            </div>
+                        </motion.div>
+                        <motion.div
+                            className="w-full lg:w-1/2 grid grid-cols-2 gap-2 h-90 mb-20"
+                            initial={{ x: 100, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                        >
+                            {slide.gridItems.map((item, i) => (
+                                <motion.div
+                                    key={i}
+                                    className="p-6 rounded-2xl bg-white/40 dark:bg-gray-900/40 text-center shadow-lg text-white flex flex-col items-center justify-center h-40"
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    transition={{ delay: 0.4 + i * 0.1 }}
+                                >
+                                    <span className="text-3xl">{item.icon}</span>
+                                    <h3 className="mt-2 text-lg font-bold">{item.title}</h3>
+                                    <p className="text-sm opacity-80">{item.description}</p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </div>
+                );
+            case "text-with-images":
+                return (
+                    <div className="flex flex-col lg:flex-row items-center gap-6 h-full">
+                        <motion.div
+                            className="w-full lg:w-1/2 p-6 text-white flex flex-col justify-center h-90"
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                        >
+                            <h1 className="text-3xl md:text-5xl font-extrabold">{slide.title}</h1>
+                            <p className="mt-4 text-lg">{slide.description}</p>
+                            <div className="mt-6">
+                                <a
+                                    href={slide.buttons[0].link}
+                                    className="px-6 py-3 text-lg rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white"
+                                >
+                                    {slide.buttons[0].text}
+                                </a>
+                            </div>
+                        </motion.div>
+                        <div className="flex gap-2 mb-8">
+                            {slide.sideImages.map((img, i) => (
+                                <motion.img
+                                    key={i}
+                                    src={img}
+                                    alt={`Side ${i + 1}`}
+                                    className="w-40 h-40 md:w-56 md:h-56 rounded-2xl shadow-lg object-cover border-2 border-white"
+                                    initial={{ scale: 0, rotate: -180, opacity: 0 }}
+                                    animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                                    transition={{
+                                        type: "spring",
+                                        stiffness: 200,
+                                        damping: 20,
+                                        delay: 0.3 + i * 0.2,
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                );
+            default:
+                return null;
+        }
     };
 
     return (
-        <div className="relative bg-white dark:bg-gray-900">
-
-            <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-                style={{
-                    backgroundImage: `url('./img/campus4.jpg')`,
-                }}
-            >
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent dark:from-gray-900 dark:via-gray-800/40 dark:to-transparent"></div>
-            </div>
-
-            {/* Background Video */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-                <video
-                    src="./vid/back2.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    className="w-full h-full object-cover"
-                ></video>
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent dark:from-gray-900 dark:via-gray-800/40 dark:to-transparent"></div>
-            </div>
-
-            {/* Hero Content */}
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
-                <div className="max-w-3xl text-center md:text-left">
-                    <motion.h1
-                        className="text-6xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl"
-                        initial="hidden"
-                        animate="visible"
-                        variants={textVariants}
-                    >
-                        <TextType
-                            text={["Do you want to build your career", "Best College in Odisha", "Contact Us"]}
-                            typingSpeed={75}
-                            pauseDuration={1500}
-                            showCursor={true}
-                            cursorCharacter="😍"
-                            className='text-lg'
-                        />
-                        <span className="block text-6xl">Tetrahedron Group</span>{' '}
-                        <span className="block text-5xl text-amber-400 text-shadow-lg">
-                            of Institutions
-                        </span>
-                    </motion.h1>
-                    <motion.p
-                        className="mt-6 text-lg text-gray-200 dark:text-gray-300 font-bold text-shadow-lg sm:mt-8 sm:text-xl sm:max-w-xl"
-                        initial="hidden"
-                        animate="visible"
-                        variants={textVariants}
-                    >
-                        Delivering Education Excellence since 2013. A leading
-                        residential science college nurturing academic
-                        excellence, scientific curiosity, and personal
-                        integrity.
-                    </motion.p>
+        <div className="relative w-full h-[80vh] md:h-[90vh] lg:h-[100vh] overflow-hidden font-sans">
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={slides[currentSlideIndex].id}
+                    className="absolute inset-0 w-full h-full"
+                >
                     <motion.div
-                        className="mt-10 flex flex-col sm:flex-row sm:justify-center md:justify-start gap-4"
-                        initial="hidden"
-                        animate="visible"
-                        variants={buttonGroupVariants}
-                    >
-                        <Link
-                            to="/about"
-                            className="inline-block px-8 py-3 text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Learn More
-                        </Link>
-                        <Link
-                            to="/contact"
-                            className="inline-block px-8 py-3 text-lg font-medium text-indigo-700 bg-white hover:bg-gray-100 rounded-md transition-transform transform hover:scale-105 dark:bg-gray-800 dark:text-indigo-300 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400"
-                        >
-                            Contact Us
-                        </Link>
-                    </motion.div>
-                </div>
+                        className="absolute inset-0 bg-cover bg-center h-full"
+                        style={{ backgroundImage: `url('${slides[currentSlideIndex].image}')` }}
+                        variants={imageVariants}
+                        initial="initial"
+                        animate="animate"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent dark:from-gray-900 dark:via-gray-800/50 dark:to-transparent" />
+                    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                        <SlideContent slide={slides[currentSlideIndex]} />
+                    </div>
+                </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation Arrows */}
+            <div className="absolute top-1/2 -translate-y-1/2 left-3 z-20">
+                <button
+                    onClick={prevSlide}
+                    className="w-8 h-8 rounded-full bg-black/30 hover:bg-black/50 transition flex items-center justify-center"
+                >
+                    <span className="block w-0 h-0 border-y-6 border-y-transparent border-r-8 border-r-white"></span>
+                </button>
             </div>
-            {/* 
-            <ScrollVelocity
-                texts={['Tetrahedron is the best', 'Delivering Education Excellence']}
-                velocity='50'
-                className="text-sm text-white px-2"
-            /> */}
+
+            <div className="absolute top-1/2 -translate-y-1/2 right-3 z-20">
+                <button
+                    onClick={nextSlide}
+                    className="w-8 h-8 rounded-full bg-black/30 hover:bg-black/50 transition flex items-center justify-center"
+                >
+                    <span className="block w-0 h-0 border-y-6 border-y-transparent border-l-8 border-l-white"></span>
+                </button>
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                {slides.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => setCurrentSlideIndex(index)}
+                        className={`h-3 rounded-full transition-all ${index === currentSlideIndex
+                            ? "w-8 bg-white"
+                            : "w-3 bg-white/50"
+                            }`}
+                    />
+                ))}
+            </div>
         </div>
     );
-};
-
-export default HeroSection;
+}

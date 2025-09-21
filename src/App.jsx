@@ -8,6 +8,7 @@ import Facilities from './pages/Facilities';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
+import ChairmansGallery from './pages/ChairmansGallery';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/chairmans-gallery" element={<ChairmansGallery />} />
             <Route path="/about" element={<About />} />
             <Route path="/academics" element={<Academics />} />
             <Route path="/facilities" element={<Facilities />} />
