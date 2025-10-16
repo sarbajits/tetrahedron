@@ -30,8 +30,9 @@ const About = () => {
                 {/* Section 1: Introduction/Overview */}
                 <motion.div
                     initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.2 }}
+                    // Changed whileInView to animate to trigger on component mount
+                    animate="show"
+                    // Removed viewport prop
                     variants={containerVariants}
                     className="text-center pb-2"
                 >
@@ -43,12 +44,15 @@ const About = () => {
                     </motion.p>
                 </motion.div>
 
+                {/* ------------------------------------------------------------- */}
+
                 {/* Section 2: Our History, Vision & Mission */}
                 <div className="lg:grid lg:grid-cols-3 lg:gap-4 items-start py-4">
                     <motion.div
                         initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.2 }}
+                        // Changed whileInView to animate
+                        animate="show"
+                        // Removed viewport prop
                         variants={containerVariants}
                         className="lg:col-span-1 mb-12 lg:mb-0"
                     >
@@ -69,8 +73,9 @@ const About = () => {
                     <div className="mt-2 lg:mt-0 lg:col-span-2 space-y-12">
                         <motion.div
                             initial="hidden"
-                            whileInView="show"
-                            viewport={{ once: true, amount: 0.2 }}
+                            // Changed whileInView to animate
+                            animate="show"
+                            // Removed viewport prop
                             variants={containerVariants}
                             className="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
                         >
@@ -82,8 +87,9 @@ const About = () => {
 
                         <motion.div
                             initial="hidden"
-                            whileInView="show"
-                            viewport={{ once: true, amount: 0.2 }}
+                            // Changed whileInView to animate
+                            animate="show"
+                            // Removed viewport prop
                             variants={containerVariants}
                             className="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
                         >
