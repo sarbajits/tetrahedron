@@ -1,212 +1,599 @@
-import { useState } from 'react';
+import React from 'react';
 
-const Gallery = () => {
-    const galleryImages = [
-        // Accounts
-        { id: 1, src: "./img/accounts1.jpg", alt: "Accounts Office 1", category: "accounts" },
-        { id: 2, src: "./img/accounts2.jpg", alt: "Accounts Office 2", category: "accounts" },
-        { id: 3, src: "./img/accounts3.jpg", alt: "Accounts Office 3", category: "accounts" },
+// LightGallery Imports
+import LightGallery from 'lightgallery/react';
+import lgVideo from 'lightgallery/plugins/video';
+import lgZoom from 'lightgallery/plugins/zoom';
 
-        // Campus
-        { id: 4, src: "./img/campus1.jpg", alt: "Campus View 1", category: "campus" },
-        { id: 5, src: "./img/campus2.jpg", alt: "Campus View 2", category: "campus" },
-        { id: 6, src: "./img/campus3.jpg", alt: "Campus View 3", category: "campus" },
-        { id: 7, src: "./img/campus4.jpg", alt: "Campus View 4", category: "campus" },
-        { id: 8, src: "./img/campus5.jpg", alt: "Campus View 5", category: "campus" },
-        { id: 9, src: "./img/campus100.jpg", alt: "Campus View 6", category: "campus" },
-        { id: 10, src: "./img/campus101.jpg", alt: "Campus View 7", category: "campus" },
+// LightGallery Styles
+import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-zoom.css';
+import 'lightgallery/css/lg-video.css';
+import VideoGallery from '../components/VideoGallery';
 
-        // Canteen
-        { id: 11, src: "./img/canteen1.jpg", alt: "Canteen 1", category: "canteen" },
-        { id: 12, src: "./img/canteen2.jpg", alt: "Canteen 2", category: "canteen" },
-        { id: 13, src: "./img/canteen3.jpg", alt: "Canteen 3", category: "canteen" },
-        { id: 14, src: "./img/canteen4.jpg", alt: "Canteen 4", category: "canteen" },
+// Media data array
+const mediaItems = [
+    // --- Accounts ---
+    {
+        src: "./img/accounts1.jpg",
+        thumb: "./img/accounts1.jpg", // Using src as thumb for simplicity
+        subHtml: "<h4>Accounts Office 1</h4>"
+    },
+    {
+        src: "./img/accounts2.jpg",
+        thumb: "./img/accounts2.jpg",
+        subHtml: "<h4>Accounts Office 2</h4>"
+    },
+    {
+        src: "./img/accounts3.jpg",
+        thumb: "./img/accounts3.jpg",
+        subHtml: "<h4>Accounts Office 3</h4>"
+    },
 
-        // Chairman
-        // { id: 15, src: "./img/chairman.jpg", alt: "Chairman Portrait", category: "chairman" },
-        { id: 16, src: "./img/chairmanOffice1.jpg", alt: "Chairman Office 1", category: "chairman" },
-        { id: 17, src: "./img/chairmanOffice2.jpg", alt: "Chairman Office 2", category: "chairman" },
+    // --- Campus ---
+    {
+        src: "./img/campus1.jpg",
+        thumb: "./img/campus1.jpg",
+        subHtml: "<h4>Campus View 1</h4>"
+    },
+    {
+        src: "./img/campus2.jpg",
+        thumb: "./img/campus2.jpg",
+        subHtml: "<h4>Campus View 2</h4>"
+    },
+    {
+        src: "./img/campus3.jpg",
+        thumb: "./img/campus3.jpg",
+        subHtml: "<h4>Campus View 3</h4>"
+    },
+    {
+        src: "./img/campus4.jpg",
+        thumb: "./img/campus4.jpg",
+        subHtml: "<h4>Campus View 4</h4>"
+    },
+    {
+        src: "./img/campus5.jpg",
+        thumb: "./img/campus5.jpg",
+        subHtml: "<h4>Campus View 5</h4>"
+    },
+    {
+        src: "./img/campus100.jpg",
+        thumb: "./img/campus100.jpg",
+        subHtml: "<h4>Campus View 6</h4>"
+    },
+    {
+        src: "./img/campus101.jpg",
+        thumb: "./img/campus101.jpg",
+        subHtml: "<h4>Campus View 7</h4>"
+    },
 
-        // Classrooms
-        { id: 18, src: "./img/classroom1.jpg", alt: "Classroom 1", category: "classrooms" },
-        { id: 19, src: "./img/classroom2.jpg", alt: "Classroom 2", category: "classrooms" },
-        { id: 20, src: "./img/classroom3.jpg", alt: "Classroom 3", category: "classrooms" },
-        { id: 21, src: "./img/classroom4.jpg", alt: "Classroom 4", category: "classrooms" },
-        { id: 22, src: "./img/classroom5.jpg", alt: "Classroom 5", category: "classrooms" },
-        { id: 23, src: "./img/classroom6.jpg", alt: "Classroom 6", category: "classrooms" },
-        { id: 24, src: "./img/classroom7.jpg", alt: "Classroom 7", category: "classrooms" },
-        { id: 25, src: "./img/classroom8.jpg", alt: "Classroom 8", category: "classrooms" },
-        { id: 26, src: "./img/classroom9.jpg", alt: "Classroom 9", category: "classrooms" },
-        { id: 27, src: "./img/classroom10.jpg", alt: "Classroom 10", category: "classrooms" },
-        { id: 28, src: "./img/classroom11.jpg", alt: "Classroom 11", category: "classrooms" },
-        { id: 29, src: "./img/classroom12.jpg", alt: "Classroom 12", category: "classrooms" },
+    // --- Canteen ---
+    {
+        src: "./img/canteen1.jpg",
+        thumb: "./img/canteen1.jpg",
+        subHtml: "<h4>Canteen 1</h4>"
+    },
+    {
+        src: "./img/canteen2.jpg",
+        thumb: "./img/canteen2.jpg",
+        subHtml: "<h4>Canteen 2</h4>"
+    },
+    {
+        src: "./img/canteen3.jpg",
+        thumb: "./img/canteen3.jpg",
+        subHtml: "<h4>Canteen 3</h4>"
+    },
+    {
+        src: "./img/canteen4.jpg",
+        thumb: "./img/canteen4.jpg",
+        subHtml: "<h4>Canteen 4</h4>"
+    },
 
-        // Hostel Office
-        { id: 30, src: "./img/hostelOffice1.jpg", alt: "Hostel Office 1", category: "hostel" },
-        { id: 31, src: "./img/hostelOffice2.jpg", alt: "Hostel Office 2", category: "hostel" },
+    // --- Chairman ---
+    {
+        src: "./img/chairmanOffice1.jpg",
+        thumb: "./img/chairmanOffice1.jpg",
+        subHtml: "<h4>Chairman Office 1</h4>"
+    },
+    {
+        src: "./img/chairmanOffice2.jpg",
+        thumb: "./img/chairmanOffice2.jpg",
+        subHtml: "<h4>Chairman Office 2</h4>"
+    },
 
-        // Labs
-        { id: 32, src: "./img/lab1.jpg", alt: "Lab 1", category: "labs" },
-        { id: 33, src: "./img/lab2.jpg", alt: "Lab 2", category: "labs" },
-        { id: 34, src: "./img/lab3.jpg", alt: "Lab 3", category: "labs" },
-        { id: 35, src: "./img/lab4.jpg", alt: "Lab 4", category: "labs" },
+    // --- Classrooms ---
+    {
+        src: "./img/classroom1.jpg",
+        thumb: "./img/classroom1.jpg",
+        subHtml: "<h4>Classroom 1</h4>"
+    },
+    {
+        src: "./img/classroom2.jpg",
+        thumb: "./img/classroom2.jpg",
+        subHtml: "<h4>Classroom 2</h4>"
+    },
+    {
+        src: "./img/classroom3.jpg",
+        thumb: "./img/classroom3.jpg",
+        subHtml: "<h4>Classroom 3</h4>"
+    },
+    {
+        src: "./img/classroom4.jpg",
+        thumb: "./img/classroom4.jpg",
+        subHtml: "<h4>Classroom 4</h4>"
+    },
+    {
+        src: "./img/classroom5.jpg",
+        thumb: "./img/classroom5.jpg",
+        subHtml: "<h4>Classroom 5</h4>"
+    },
+    {
+        src: "./img/classroom6.jpg",
+        thumb: "./img/classroom6.jpg",
+        subHtml: "<h4>Classroom 6</h4>"
+    },
+    {
+        src: "./img/classroom7.jpg",
+        thumb: "./img/classroom7.jpg",
+        subHtml: "<h4>Classroom 7</h4>"
+    },
+    {
+        src: "./img/classroom8.jpg",
+        thumb: "./img/classroom8.jpg",
+        subHtml: "<h4>Classroom 8</h4>"
+    },
+    {
+        src: "./img/classroom9.jpg",
+        thumb: "./img/classroom9.jpg",
+        subHtml: "<h4>Classroom 9</h4>"
+    },
+    {
+        src: "./img/classroom10.jpg",
+        thumb: "./img/classroom10.jpg",
+        subHtml: "<h4>Classroom 10</h4>"
+    },
+    {
+        src: "./img/classroom11.jpg",
+        thumb: "./img/classroom11.jpg",
+        subHtml: "<h4>Classroom 11</h4>"
+    },
+    {
+        src: "./img/classroom12.jpg",
+        thumb: "./img/classroom12.jpg",
+        subHtml: "<h4>Classroom 12</h4>"
+    },
 
-        // Logo
-        // { id: 36, src: "./img/logo.jpg", alt: "Institution Logo JPG", category: "logo" },
-        // { id: 37, src: "./img/logo.png", alt: "Institution Logo PNG", category: "logo" },
+    // --- Hostel Office ---
+    {
+        src: "./img/hostelOffice1.jpg",
+        thumb: "./img/hostelOffice1.jpg",
+        subHtml: "<h4>Hostel Office 1</h4>"
+    },
+    {
+        src: "./img/hostelOffice2.jpg",
+        thumb: "./img/hostelOffice2.jpg",
+        subHtml: "<h4>Hostel Office 2</h4>"
+    },
 
-        // Students
-        { id: 38, src: "./img/students1.jpg", alt: "Students 1", category: "students" },
-        { id: 39, src: "./img/students2.jpg", alt: "Students 2", category: "students" }
-    ];
+    // --- Labs ---
+    {
+        src: "./img/lab1.jpg",
+        thumb: "./img/lab1.jpg",
+        subHtml: "<h4>Lab 1</h4>"
+    },
+    {
+        src: "./img/lab2.jpg",
+        thumb: "./img/lab2.jpg",
+        subHtml: "<h4>Lab 2</h4>"
+    },
+    {
+        src: "./img/lab3.jpg",
+        thumb: "./img/lab3.jpg",
+        subHtml: "<h4>Lab 3</h4>"
+    },
+    {
+        src: "./img/lab4.jpg",
+        thumb: "./img/lab4.jpg",
+        subHtml: "<h4>Lab 4</h4>"
+    },
+
+    // --- Students ---
+    {
+        src: "./img/students1.jpg",
+        thumb: "./img/students1.jpg",
+        subHtml: "<h4>Students 1</h4>"
+    },
+    {
+        src: "./img/students2.jpg",
+        thumb: "./img/students2.jpg",
+        subHtml: "<h4>Students 2</h4>"
+    },
+
+    //new
+
+    {
+        src: "./img/new/IMG-20251015-WA0002.jpg",
+        thumb: "./img/new/IMG-20251015-WA0002.jpg",
+        subHtml: "<h4>Photo 2</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0003.jpg",
+        thumb: "./img/new/IMG-20251015-WA0003.jpg",
+        subHtml: "<h4>Photo 3</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0004.jpg",
+        thumb: "./img/new/IMG-20251015-WA0004.jpg",
+        subHtml: "<h4>Photo 4</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0005.jpg",
+        thumb: "./img/new/IMG-20251015-WA0005.jpg",
+        subHtml: "<h4>Photo 5</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0006.jpg",
+        thumb: "./img/new/IMG-20251015-WA0006.jpg",
+        subHtml: "<h4>Photo 6</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0007.jpg",
+        thumb: "./img/new/IMG-20251015-WA0007.jpg",
+        subHtml: "<h4>Photo 7</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0008.jpg",
+        thumb: "./img/new/IMG-20251015-WA0008.jpg",
+        subHtml: "<h4>Photo 8</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0009.jpg",
+        thumb: "./img/new/IMG-20251015-WA0009.jpg",
+        subHtml: "<h4>Photo 9</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0010.jpg",
+        thumb: "./img/new/IMG-20251015-WA0010.jpg",
+        subHtml: "<h4>Photo 10</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0011.jpg",
+        thumb: "./img/new/IMG-20251015-WA0011.jpg",
+        subHtml: "<h4>Photo 11</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0012.jpg",
+        thumb: "./img/new/IMG-20251015-WA0012.jpg",
+        subHtml: "<h4>Photo 12</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0013.jpg",
+        thumb: "./img/new/IMG-20251015-WA0013.jpg",
+        subHtml: "<h4>Photo 13</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0014.jpg",
+        thumb: "./img/new/IMG-20251015-WA0014.jpg",
+        subHtml: "<h4>Photo 14</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0015.jpg",
+        thumb: "./img/new/IMG-20251015-WA0015.jpg",
+        subHtml: "<h4>Photo 15</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0016.jpg",
+        thumb: "./img/new/IMG-20251015-WA0016.jpg",
+        subHtml: "<h4>Photo 16</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0017.jpg",
+        thumb: "./img/new/IMG-20251015-WA0017.jpg",
+        subHtml: "<h4>Photo 17</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0018.jpg",
+        thumb: "./img/new/IMG-20251015-WA0018.jpg",
+        subHtml: "<h4>Photo 18</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0019.jpg",
+        thumb: "./img/new/IMG-20251015-WA0019.jpg",
+        subHtml: "<h4>Photo 19</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0020.jpg",
+        thumb: "./img/new/IMG-20251015-WA0020.jpg",
+        subHtml: "<h4>Photo 20</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0021.jpg",
+        thumb: "./img/new/IMG-20251015-WA0021.jpg",
+        subHtml: "<h4>Photo 21</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0023.jpg",
+        thumb: "./img/new/IMG-20251015-WA0023.jpg",
+        subHtml: "<h4>Photo 22</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0024.jpg",
+        thumb: "./img/new/IMG-20251015-WA0024.jpg",
+        subHtml: "<h4>Photo 23</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0025.jpg",
+        thumb: "./img/new/IMG-20251015-WA0025.jpg",
+        subHtml: "<h4>Photo 24</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0026.jpg",
+        thumb: "./img/new/IMG-20251015-WA0026.jpg",
+        subHtml: "<h4>Photo 25</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0027.jpg",
+        thumb: "./img/new/IMG-20251015-WA0027.jpg",
+        subHtml: "<h4>Photo 26</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0028.jpg",
+        thumb: "./img/new/IMG-20251015-WA0028.jpg",
+        subHtml: "<h4>Photo 27</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0029.jpg",
+        thumb: "./img/new/IMG-20251015-WA0029.jpg",
+        subHtml: "<h4>Photo 28</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0030.jpg",
+        thumb: "./img/new/IMG-20251015-WA0030.jpg",
+        subHtml: "<h4>Photo 29</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0031.jpg",
+        thumb: "./img/new/IMG-20251015-WA0031.jpg",
+        subHtml: "<h4>Photo 30</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0032.jpg",
+        thumb: "./img/new/IMG-20251015-WA0032.jpg",
+        subHtml: "<h4>Photo 31</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0033.jpg",
+        thumb: "./img/new/IMG-20251015-WA0033.jpg",
+        subHtml: "<h4>Photo 32</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0034.jpg",
+        thumb: "./img/new/IMG-20251015-WA0034.jpg",
+        subHtml: "<h4>Photo 33</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0035.jpg",
+        thumb: "./img/new/IMG-20251015-WA0035.jpg",
+        subHtml: "<h4>Photo 34</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0036.jpg",
+        thumb: "./img/new/IMG-20251015-WA0036.jpg",
+        subHtml: "<h4>Photo 35</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0037.jpg",
+        thumb: "./img/new/IMG-20251015-WA0037.jpg",
+        subHtml: "<h4>Photo 36</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0038.jpg",
+        thumb: "./img/new/IMG-20251015-WA0038.jpg",
+        subHtml: "<h4>Photo 37</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0039.jpg",
+        thumb: "./img/new/IMG-20251015-WA0039.jpg",
+        subHtml: "<h4>Photo 38</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0040.jpg",
+        thumb: "./img/new/IMG-20251015-WA0040.jpg",
+        subHtml: "<h4>Photo 39</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0041.jpg",
+        thumb: "./img/new/IMG-20251015-WA0041.jpg",
+        subHtml: "<h4>Photo 40</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0042.jpg",
+        thumb: "./img/new/IMG-20251015-WA0042.jpg",
+        subHtml: "<h4>Photo 41</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0043.jpg",
+        thumb: "./img/new/IMG-20251015-WA0043.jpg",
+        subHtml: "<h4>Photo 42</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0044.jpg",
+        thumb: "./img/new/IMG-20251015-WA0044.jpg",
+        subHtml: "<h4>Photo 43</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0045.jpg",
+        thumb: "./img/new/IMG-20251015-WA0045.jpg",
+        subHtml: "<h4>Photo 44</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251015-WA0046.jpg",
+        thumb: "./img/new/IMG-20251015-WA0046.jpg",
+        subHtml: "<h4>Photo 45</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251016-WA0012.jpg",
+        thumb: "./img/new/IMG-20251016-WA0012.jpg",
+        subHtml: "<h4>Photo 46</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251016-WA0013.jpg",
+        thumb: "./img/new/IMG-20251016-WA0013.jpg",
+        subHtml: "<h4>Photo 47</h4>"
+    },
+    {
+        src: "./img/new/IMG-20251016-WA0014.jpg",
+        thumb: "./img/new/IMG-20251016-WA0014.jpg",
+        subHtml: "<h4>Photo 48</h4>"
+    },
 
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    const openModal = (index) => {
-        setCurrentImageIndex(index);
-        setIsModalOpen(true);
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-    };
+    // --- Video Example (For Mixed Content Demo) ---
+    // {
+    //     // YouTube URL for lightGallery's video plugin
+    //     src: 'https://www.youtube.com/watch?v=kYmH401qQe4',
+    //     // Thumbnail for the video (replace with your video poster/thumb)
+    //     thumb: 'https://img.youtube.com/vi/kYmH401qQe4/hqdefault.jpg',
+    //     subHtml: '<h4>Promotional Video (Example)</h4>',
+    //     category: 'video' // Added a category for better filtering if needed
+    // },
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
-    };
+    // {
+    //     src: "https://sarbajits.github.io/tetrahedron/vid/back2.mp4",
+    //     thumb:
+    //         "https://www.shutterstock.com/image-photo/blond-hair-girl-taking-photo-260nw-2492842415.jpg",
+    //     subHtml: "<h4>Video 1111</h4>",
+    //     type: "video",
+    // },
+    // {
+    //     src: "./vid/VID-20251015-WA0013.mp4",
+    //     thumb: "./img/new/IMG-20251016-WA0014.jpg",
+    //     subHtml: "<h4>Video 1</h4>",
+    //     type: "video",
+    // },
 
-    const navigate = (direction) => {
-        let newIndex;
-        if (direction === 'prev') {
-            newIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-        } else {
-            newIndex = (currentImageIndex + 1) % galleryImages.length;
-        }
-        setCurrentImageIndex(newIndex);
+    // {
+    //     src: "./vid/VID-20251015-WA0013.mp4",
+    //     thumb: "./img/new/IMG-20251016-WA0014.jpg",
+    //     subHtml: "<h4>Video 1</h4>",
+    //     type: "video",
+    // },
+    // {
+    //     src: "./vid/VID-20251015-WA0014.mp4",
+    //     thumb: "./vid/VID-20251015-WA0014.mp4",
+    //     subHtml: "<h4>Video 2</h4>",
+    //     type: "video",
+    // },
+    // {
+    //     src: "./vid/VID-20251015-WA0021.mp4",
+    //     thumb: "./vid/VID-20251015-WA0021.mp4",
+    //     subHtml: "<h4>Video 3</h4>",
+    //     type: "video",
+    // },
+    // {
+    //     src: "./vid/WhatsApp Video 2025-10-15 at 16.56.26_3a05fde7.mp4",
+    //     thumb: "./vid/WhatsApp Video 2025-10-15 at 16.56.26_3a05fde7.mp4",
+    //     subHtml: "<h4>Video 4</h4>",
+    //     type: "video",
+    // },
+    // {
+    //     src: "./vid/WhatsApp Video 2025-10-15 at 17.14.48_1e4fb5fe.mp4",
+    //     thumb: "./vid/WhatsApp Video 2025-10-15 at 17.14.48_1e4fb5fe.mp4",
+    //     subHtml: "<h4>Video 5</h4>",
+    //     type: "video",
+    // },
+    // {
+    //     src: "./vid/WhatsApp Video 2025-10-15 at 17.14.56_59ca9b6e.mp4",
+    //     thumb: "./vid/WhatsApp Video 2025-10-15 at 17.14.56_59ca9b6e.mp4",
+    //     subHtml: "<h4>Video 6</h4>",
+    //     type: "video",
+    // },
+    // {
+    //     src: "./vid/WhatsApp Video 2025-10-15 at 19.01.25_0666225c.mp4",
+    //     thumb: "./vid/WhatsApp Video 2025-10-15 at 19.01.25_0666225c.mp4",
+    //     subHtml: "<h4>Video 7</h4>",
+    //     type: "video",
+    // }
+];
+
+export default function Gallery() {
+    const onInit = () => {
+        console.log('lightGallery has been initialized');
     };
 
     return (
-        <div className="pt-16 bg-white dark:bg-gray-900 min-h-screen">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
-                        Our <span className="text-indigo-600 dark:text-indigo-400">Gallery</span>
-                    </h2>
-                    <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
-                        Explore life at Tetrahedron through our photo collection
-                    </p>
-                </div>
-
-                {/* Gallery Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {galleryImages.map((image, index) => (
-                        <div
-                            key={image.id}
-                            className="group relative rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
-                            onClick={() => openModal(index)}
-                        >
-                            <div className="aspect-w-4 aspect-h-3">
-                                <img
-                                    src={image.src}
-                                    alt={image.alt}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    loading="lazy"
-                                />
-                            </div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                                <p className="text-white text-sm font-medium truncate w-full">
-                                    {image.alt}
-                                </p>
-                            </div>
-                            <div className="absolute top-2 right-2 bg-black/40 text-white text-xs px-2 py-1 rounded-md">
-                                {image.category}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Video Section */}
-                <div className="mt-16 bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Campus Tour</h3>
-                    <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-600">
-                        <div className="w-full h-96 flex flex-col items-center justify-center text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <p className="text-xl font-medium">Campus tour video coming soon</p>
-                        </div>
-                    </div>
-                </div>
+        <div className="py-16 px-4 bg-white dark:bg-gray-900 min-h-screen">
+            <div className="text-center mb-12">
+                <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+                    Our <span className="text-indigo-600 dark:text-indigo-400">Gallery</span>
+                </h2>
+                <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
+                    Explore life at Tetrahedron through our photo and video collection
+                </p>
             </div>
 
-            {/* Lightbox Modal */}
-            {isModalOpen && (
-                <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="relative w-full max-w-6xl">
-                        {/* Navigation Controls - Subtle Design */}
-                        <div className="absolute inset-0 flex items-center justify-between pointer-events-none">
-                            {/* Previous Button */}
-                            <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    navigate('prev');
-                                }}
-                                className="pointer-events-auto ml-4 p-2 text-white/80 hover:text-white transition-colors duration-200 bg-black/20 hover:bg-black/40 backdrop-blur-sm rounded-md"
-                                aria-label="Previous image"
+            {/* LightGallery Section */}
+            <LightGallery
+                onInit={onInit}
+                speed={500}
+                plugins={[lgZoom, lgVideo]}
+                elementClassNames="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4"
+            >
+                {mediaItems.map((item, index) => {
+                    if (item.type === "video") {
+                        return (
+                            <a
+                                key={index}
+                                data-lg-size="1280-720"
+                                data-sub-html={item.subHtml}
+                                data-poster={item.thumb}
+                                data-src={item.src}
+                                data-video={`{"source": [{"src":"${item.src}","type":"video/mp4"}], "attributes": {"controls": true, "preload": false}}`}
+                                className="relative block overflow-hidden rounded-2xl shadow-lg cursor-pointer group"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
-                                </svg>
-                            </button>
-
-                            {/* Next Button */}
-                            <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    navigate('next');
-                                }}
-                                className="pointer-events-auto mr-4 p-2 text-white/80 hover:text-white transition-colors duration-200 bg-black/20 hover:bg-black/40 backdrop-blur-sm rounded-md"
-                                aria-label="Next image"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        {/* Close Button - Subtle Design */}
-                        <button
-                            onClick={closeModal}
-                            className="absolute top-4 right-4 p-2 text-white/80 hover:text-white transition-colors duration-200 bg-black/20 hover:bg-black/40 backdrop-blur-sm rounded-md"
-                            aria-label="Close lightbox"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-
-                        {/* Image and Caption */}
-                        <div className="flex flex-col items-center">
-                            <div className="max-h-[80vh] w-full flex items-center justify-center">
                                 <img
-                                    src={galleryImages[currentImageIndex].src.replace('600x400', '1200x800')}
-                                    alt={galleryImages[currentImageIndex].alt}
-                                    className="max-w-full max-h-full object-contain rounded-lg"
+                                    src={item.thumb}
+                                    alt={item.subHtml.replace(/<.*?>/g, "")}
+                                    className="w-full rounded-2xl object-cover transition-transform duration-300 group-hover:scale-105"
+                                    loading="lazy"
                                 />
-                            </div>
-                            <div className="mt-4 text-center text-white">
-                                <p className="text-lg font-medium">{galleryImages[currentImageIndex].alt}</p>
-                                <p className="text-sm text-gray-300 mt-1">
-                                    {currentImageIndex + 1} of {galleryImages.length} • {galleryImages[currentImageIndex].category === 'labs' ? 'Laboratory' : galleryImages[currentImageIndex].category}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
+                                {/* Overlay */}
+                                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-300"></div>
+                                {/* Play Button */}
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <svg
+                                        className="w-14 h-14 text-white/90 group-hover:text-white transition-colors duration-300"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M6 3l12 9-12 9V3z" />
+                                    </svg>
+                                </div>
+                            </a>
+                        );
+                    } else {
+                        return (
+                            <a
+                                key={index}
+                                data-src={item.src}
+                                data-sub-html={item.subHtml}
+                                className="relative block overflow-hidden rounded-2xl shadow-lg cursor-pointer group"
+                            >
+                                <img
+                                    src={item.thumb}
+                                    alt={item.subHtml.replace(/<.*?>/g, "")}
+                                    className="w-full rounded-2xl object-cover transition-transform duration-300 group-hover:scale-105"
+                                    loading="lazy"
+                                />
+                                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-300"></div>
+                            </a>
+                        );
+                    }
+                })}
+            </LightGallery>
+
+            <VideoGallery />
         </div>
     );
-};
-
-export default Gallery;
+}

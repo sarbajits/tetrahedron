@@ -44,7 +44,7 @@ export default function App() {
         {
             id: 4,
             type: "text-with-images",
-            image: "./img/campus4.jpg",
+            image: "./img/new/IMG-20251015-WA0028.jpg",
             title: "Residential Learning Environment",
             description:
                 "Tetrahedron provides a safe, structured residential setting fostering discipline, independence, and holistic development.",
