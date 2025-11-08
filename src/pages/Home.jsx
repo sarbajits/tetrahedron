@@ -6,6 +6,7 @@ import Whatsapp from '../components/home/Whatsapp';
 import { motion } from 'framer-motion';
 import CalltoAction from '../components/home/CalltoAction';
 import styled, { createGlobalStyle } from "styled-components";
+import QuickInfoBar from '../components/home/QuickInfoBar';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -16,24 +17,27 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Home = () => {
-    return (
-        <div className="pt-16">
-            {/* Hero Section */}
-            <HeroSection />
+  return (
+    <div className="pt-16">
+      {/* Hero Section */}
+      <HeroSection />
 
-            {/* Features Section */}
-            <FeatureSection />
+      {/* Quick Info Bar */}
+      <QuickInfoBar />
 
-            {/* Testimonials */}
-            <TestimonialsSection />
+      {/* Features Section */}
+      <FeatureSection />
 
-            {/* Call to Action */}
-            <CalltoAction />
-            <Whatsapp />
+      {/* Testimonials */}
+      <TestimonialsSection />
+
+      {/* Call to Action */}
+      <CalltoAction />
+      <Whatsapp />
 
 
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Home;

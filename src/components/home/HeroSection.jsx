@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function App() {
     const slides = [
@@ -89,25 +90,25 @@ export default function App() {
                         <h2 className="text-sm font-bold opacity-80">
                             {slide.description}
                         </h2>
-                        <h1 className="mt-2 text-6xl md:text-6xl font-extrabold">
+                        <h1 className="mt-2 text-4xl md:text-6xl font-extrabold">
                             {slide.title}
                         </h1>
                         <h3 className="mt-2 text-xl font-semibold opacity-90">
                             {slide.subtitle}
                         </h3>
-                        <div className="mt-8">
-                            <a
-                                href={slide.buttons[0].link}
+                        <div className="mt-4 md:mt-8 flex-row gap-2">
+                            <Link
+                                to={slide.buttons[0].link}
                                 className="px-6 py-3 text-lg font-medium rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white"
                             >
                                 {slide.buttons[0].text}
-                            </a>
-                            <a
-                                href={slide.buttons[1].link}
+                            </Link>
+                            <Link
+                                to={slide.buttons[1].link}
                                 className="ms-2 px-6 py-3 text-lg font-medium rounded-lg bg-white hover:bg-indigo-100 text-indigo-600"
                             >
                                 {slide.buttons[1].text}
-                            </a>
+                            </Link>
                         </div>
 
                     </motion.div>
@@ -123,31 +124,31 @@ export default function App() {
                             animate={{ x: 0, opacity: 1 }}
                         />
                         <motion.div
-                            className="w-full md:w-1/2 p-6 m-10 rounded-2xl bg-white/40 dark:bg-gray-900/80 backdrop-blur text-gray-900 dark:text-gray-100 shadow-xl flex flex-col justify-center"
+                            className="w-full md:w-1/2 p-4 md:p-6 m-10 rounded-2xl bg-white/40 dark:bg-gray-900/80 backdrop-blur text-gray-900 dark:text-gray-100 shadow-xl flex flex-col justify-center"
                             initial={{ x: 100, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                         >
                             <h1 className="text-xl md:text-2xl font-extrabold">{slide.title}</h1>
                             <p className="mt-2 text-lg leading-relaxed">{slide.description}</p>
                             <div className="mt-2">
-                                <a
-                                    href={slide.buttons[0].link}
+                                <Link
+                                    to={slide.buttons[0].link}
                                     className="px-2 py-2 text-lg rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
                                 >
                                     {slide.buttons[0].text}
-                                </a>
+                                </Link>
                             </div>
                             <div className="mt-6 space-y-3">
                                 {slide.cards.map((card, i) => (
                                     <motion.div
                                         key={i}
-                                        className="p-1 rounded-xl bg-gray-100 dark:bg-gray-800"
+                                        className="p-1 rounded-lg bg-gray-100 dark:bg-gray-800"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.3 + i * 0.2 }}
                                     >
                                         <h3 className="text-lg font-bold">{card.title}</h3>
-                                        <p className="text-sm opacity-80">{card.text}</p>
+                                        <p className="text-sm opacity-80 ml-2">{card.text}</p>
                                     </motion.div>
                                 ))}
                             </div>
@@ -156,39 +157,39 @@ export default function App() {
                 );
             case "grid-cards":
                 return (
-                    <div className="flex flex-col lg:flex-row items-center gap-2 h-full">
+                    <div className="flex flex-col lg:flex-row items-center gap-4 h-full">
                         <motion.div
-                            className="w-full lg:w-1/2 p-6 text-white flex flex-col justify-center h-full"
+                            className="w-full lg:w-1/2 p-4 md:p-6 text-white flex flex-col justify-center h-full"
                             initial={{ x: -100, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                         >
-                            <h1 className="text-3xl md:text-5xl font-extrabold">{slide.title}</h1>
-                            <p className="mt-4 text-lg">{slide.description}</p>
-                            <div className="mt-6">
-                                <a
-                                    href={slide.buttons[0].link}
-                                    className="px-6 py-3 text-lg rounded-lg bg-green-600 hover:bg-green-700 text-white"
+                            <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold">{slide.title}</h1>
+                            <p className="mt-2 md:mt-4 text-base md:text-lg">{slide.description}</p>
+                            <div className="mt-4 md:mt-6">
+                                <Link
+                                    to={slide.buttons[0].link}
+                                    className="px-4 py-2 md:px-6 md:py-3 text-base md:text-lg rounded-lg bg-green-600 hover:bg-green-700 text-white"
                                 >
                                     {slide.buttons[0].text}
-                                </a>
+                                </Link>
                             </div>
                         </motion.div>
                         <motion.div
-                            className="w-full lg:w-1/2 grid grid-cols-2 gap-2 h-90 mb-20"
+                            className="w-full lg:w-1/2 grid grid-cols-2 gap-2 md:gap-4 h-auto md:h-90 mb-8 md:mb-20"
                             initial={{ x: 100, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                         >
                             {slide.gridItems.map((item, i) => (
                                 <motion.div
                                     key={i}
-                                    className="p-6 rounded-2xl bg-white/40 dark:bg-gray-900/40 text-center shadow-lg text-white flex flex-col items-center justify-center h-40"
+                                    className="flex flex-col items-center justify-center bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-xl md:rounded-2xl p-2 md:p-4 shadow-lg text-gray-900 dark:text-gray-100"
                                     initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
                                     transition={{ delay: 0.4 + i * 0.1 }}
                                 >
-                                    <span className="text-3xl">{item.icon}</span>
-                                    <h3 className="mt-2 text-lg font-bold">{item.title}</h3>
-                                    <p className="text-sm opacity-80">{item.description}</p>
+                                    <span className="text-xl md:text-3xl">{item.icon}</span>
+                                    <h3 className="mt-1 md:mt-2 text-sm md:text-lg font-bold">{item.title}</h3>
+                                    <p className="text-xs md:text-sm opacity-80 text-center">{item.description}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
@@ -196,30 +197,30 @@ export default function App() {
                 );
             case "text-with-images":
                 return (
-                    <div className="flex flex-col lg:flex-row items-center gap-6 h-full">
+                    <div className="flex flex-col lg:flex-row items-center gap-6 h-full w-full">
                         <motion.div
-                            className="w-full lg:w-1/2 p-6 text-white flex flex-col justify-center h-90"
+                            className="w-full lg:w-1/2 p-4 md:p-6 text-white flex flex-col justify-center h-auto"
                             initial={{ opacity: 0, y: 40 }}
                             animate={{ opacity: 1, y: 0 }}
                         >
-                            <h1 className="text-3xl md:text-5xl font-extrabold">{slide.title}</h1>
-                            <p className="mt-4 text-lg">{slide.description}</p>
-                            <div className="mt-6">
-                                <a
-                                    href={slide.buttons[0].link}
-                                    className="px-6 py-3 text-lg rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white"
+                            <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold">{slide.title}</h1>
+                            <p className="mt-2 md:mt-4 text-base md:text-lg">{slide.description}</p>
+                            <div className="mt-4 md:mt-6">
+                                <Link
+                                    to={slide.buttons[0].link}
+                                    className="px-4 py-2 md:px-6 md:py-3 text-base md:text-lg rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white"
                                 >
                                     {slide.buttons[0].text}
-                                </a>
+                                </Link>
                             </div>
                         </motion.div>
-                        <div className="flex gap-2 mb-8">
+                        <div className="flex gap-4 mb-4 md:mb-8 w-full lg:w-1/2 justify-center items-center">
                             {slide.sideImages.map((img, i) => (
                                 <motion.img
                                     key={i}
                                     src={img}
                                     alt={`Side ${i + 1}`}
-                                    className="w-40 h-40 md:w-56 md:h-56 rounded-2xl shadow-lg object-cover border-2 border-white"
+                                    className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-60 lg:h-56 rounded-2xl shadow-lg object-cover border-2 border-white"
                                     initial={{ scale: 0, rotate: -180, opacity: 0 }}
                                     animate={{ scale: 1, rotate: 0, opacity: 1 }}
                                     transition={{
