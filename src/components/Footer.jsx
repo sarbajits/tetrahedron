@@ -39,10 +39,29 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
                         <address className="not-italic text-gray-300">
-                            <p>H234+H88 Tangi, Odisha</p>
-                            <p className="mt-2">Phone: 7008222977</p>
-                            <p className="mt-2">Email: info@tetrahedrontangi.com</p>
+                            <p>Tangi, Odisha</p>
+
+                            <p className="mt-2">
+                                Phone:
+                                <a
+                                    href="tel:+917008222977"
+                                    className="text-blue-400 hover:underline ml-1"
+                                >
+                                    +91 7008222977
+                                </a>
+                            </p>
+
+                            <p className="mt-2">
+                                Email:
+                                <a
+                                    href="mailto:info@tetrahedrontangi.com"
+                                    className="text-blue-400 hover:underline ml-1"
+                                >
+                                    info@tetrahedrontangi.com
+                                </a>
+                            </p>
                         </address>
+
                     </div>
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>

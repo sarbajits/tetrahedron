@@ -25,7 +25,7 @@ const About = () => {
 
     return (
         <div className="pt-16 bg-white dark:bg-gray-900">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-2">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-2">
 
                 {/* Section 1: Introduction/Overview */}
                 <motion.div
@@ -60,7 +60,7 @@ const About = () => {
                             Our Journey
                         </motion.h2>
                         <motion.p variants={itemVariants} className="mt-3 text-lg text-gray-500 dark:text-gray-300 leading-relaxed">
-                            Tetrahedron Group of Institutions was established in <b>2013</b> by our visionary founder <b>Triideb Behera</b> with the aim of creating a center of excellence in science education. What started as a modest institution has now grown into a leading residential science college in Odisha, known for its academic rigor and holistic development approach.
+                            Tetrahedron Group of Institutions was established in <b>2013</b> by our visionary founder <b>Trideb Behera</b> with the aim of creating a center of excellence in science education. What started as a modest institution has now grown into a leading residential science college in Odisha, known for its academic rigor and holistic development approach.
                         </motion.p>
                         <motion.img
                             variants={imageVariants}

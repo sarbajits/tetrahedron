@@ -10,7 +10,7 @@ export default function App() {
             image: "./img/campus5.jpg",
             title: "Tetrahedron Group of Institutions",
             subtitle: "Delivering Education Excellence since 2013. A leading residential science college nurturing academic excellence, scientific curiosity, and personal integrity.",
-            description: "Founded by Triideb Behera in 2013",
+            description: "Founded by Trideb Behera in 2013",
             buttons: [{ text: "Know More", link: "./about", primary: true }, { text: "Contact Us", link: "./contact" }],
         },
         {
@@ -23,7 +23,7 @@ export default function App() {
             buttons: [{ text: "Chairman's Gallery", link: "./chairmans-gallery", primary: true }],
             cards: [
                 { title: "Established", text: "2013" },
-                { title: "Founder & Chairman", text: "Triideb Behera" },
+                { title: "Founder & Chairman", text: "Trideb Behera" },
                 { title: "Tagline", text: "Delivering Education Excellence" },
             ],
         },

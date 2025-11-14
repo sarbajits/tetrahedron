@@ -38,6 +38,30 @@ const testimonials = [
         avatar: "./img/topper6.png",
         text: "The systematic study plan and personalized mentorship at Tetrahedron helped me stay consistent throughout my journey. The regular assessments and motivating environment pushed me toward success.",
     },
+    {
+        name: "ARPIT",
+        role: "CHSE 2025 Science Topper",
+        avatar: "./img/topper7.png",
+        text: "The faculty at Tetrahedron are not just teachers; they are mentors who genuinely care about our success. Their expertise and encouragement played a crucial role in my NEET preparation.",
+    },
+    {
+        name: "SUBHALAXMI",
+        role: "CHSE 2025 Science Topper",
+        avatar: "./img/topper8.png",
+        text: "The structured curriculum and regular practice tests at Tetrahedron helped me build confidence and improve my performance. The supportive community made the journey enjoyable.",
+    },
+    {
+        name: "BHAGYASHREE",
+        role: "CHSE 2025 Science Topper",
+        avatar: "./img/topper9.png",
+        text: "The JEE coaching at Tetrahedron is unparalleled. The faculty's deep understanding of the exam pattern and their ability to simplify complex concepts made my preparation effective and efficient.",
+    },
+    {
+        name: "SWAYAMSHREE",
+        role: "CHSE 2025 Science Topper",
+        avatar: "./img/topper10.png",
+        text: "Tetrahedron provided me with the right resources and guidance to excel in JEE. The regular tests, doubt sessions, and personalized attention helped me stay on track and achieve my goals.",
+    }
 ];
 
 const TestimonialsSection = () => {
@@ -74,7 +98,11 @@ const TestimonialsSection = () => {
         }),
     };
 
-    const handleDragEnd = () => {
+    // Fix: Prevent rapid state changes during drag by disabling drag while animating
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    const handleDragEnd = (event, info) => {
+        if (isAnimating) return;
         if (info.offset.x > 50) {
             setDirection(-1);
             setCurrentIndex((prev) =>
@@ -87,6 +115,14 @@ const TestimonialsSection = () => {
             );
         }
     };
+
+    // Listen for animation start/end to control drag
+    useEffect(() => {
+        setIsAnimating(true);
+        const timer = setTimeout(() => setIsAnimating(false), 500);
+        return () => clearTimeout(timer);
+    }, [currentIndex]);
+
 
     return (
         <motion.section

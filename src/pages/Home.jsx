@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import CalltoAction from '../components/home/CalltoAction';
 import styled, { createGlobalStyle } from "styled-components";
 import QuickInfoBar from '../components/home/QuickInfoBar';
+import Blogs from '../components/home/Blogs';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -30,6 +31,9 @@ const Home = () => {
 
       {/* Testimonials */}
       <TestimonialsSection />
+
+      {/* Blogs Section */}
+      <Blogs />
 
       {/* Call to Action */}
       <CalltoAction />

@@ -33,7 +33,7 @@ const Navbar = () => {
         <nav
             className={`fixed w-full z-50 transition-all duration-300 ${scrolled
                 ? "bg-white dark:bg-gray-900 shadow-md"
-                : "bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm"
+                : "bg-white/80 dark:bg-gray-900/90 backdrop-blur-sm"
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,7 +43,7 @@ const Navbar = () => {
                         <Link to="/" className="flex items-center">
                             <img
                                 className="h-16 w-auto"
-                                src="./img/full_logo.png"
+                                src="./img/full_logo_new.png"
                                 alt="Tetrahedron Group of Institutions"
                             />
                         </Link>
