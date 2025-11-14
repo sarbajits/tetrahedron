@@ -9,6 +9,7 @@ import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import ChairmansGallery from './pages/ChairmansGallery';
+import Loader from './components/Loader';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/facilities" element={<Facilities />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/loader" element={<Loader />} />
           </Routes>
         </main>
         <Footer />

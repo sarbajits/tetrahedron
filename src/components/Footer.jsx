@@ -88,9 +88,12 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="mt-8 pt-8 border-t border-gray-700">
-                    <p className="text-gray-300 text-center">
-                        &copy; {new Date().getFullYear()} Tetrahedron Group of Institutions. All rights reserved.
-                    </p>
+                    <div className="text-gray-300 text-center">
+                        <p>
+                            &copy; {new Date().getFullYear()} Tetrahedron Group of Institutions. All rights reserved.
+                        </p>
+                        <a href="https://sarbajit.dev" target="_blank" rel="noopener noreferrer">{" "}Site was designed and developed by <b>sarbajit.dev</b></a>
+                    </div>
                 </div>
             </div>
         </footer>
