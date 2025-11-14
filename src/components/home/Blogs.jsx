@@ -31,7 +31,7 @@ export default function Blogs() {
             aria-label="Blogs"
         >
             <h2 className="text-4xl font-extrabold text-center text-indigo-700 dark:text-indigo-300 mb-10 tracking-tight">
-                Latest Blogs
+                Campus Diaries
             </h2>
             <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {blogs.map((blog, idx) => (
@@ -67,18 +67,6 @@ export default function Blogs() {
                     </div>
                 ))}
             </div>
-            <style>{`
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-            `}</style>
         </section>
     );
 }

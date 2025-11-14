@@ -27,7 +27,7 @@ const About = () => {
         <div className="pt-16 bg-white dark:bg-gray-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-2">
                 {/* Section 3: Chairman's Message - Prominently Placed */}
-                <div className="py-2 px-20 sm:px-6 lg:px-8">
+                <div className="py-2 px-2 sm:px-6 lg:px-10">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         // **FIX:** Changed whileInView to animate to ensure the animation plays on load
@@ -35,7 +35,7 @@ const About = () => {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="flex flex-col lg:flex-row items-center lg:items-start lg:space-x-12 bg-gradient-to-br from-indigo-50 via-white to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-8 rounded-2xl shadow-2xl"
                     >
-                        <div className="flex-shrink-0 mb-8 lg:mb-0 lg:w-1/3 flex flex-col items-center lg:items-start px-10">
+                        <div className="flex-shrink-0 mb-8 lg:mb-0 lg:w-1/3 flex flex-col items-center lg:items-start px-2 md:px-10">
                             <motion.img
                                 initial={{ scale: 0.8, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
